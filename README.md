@@ -7,16 +7,16 @@ The program reads in the information of every individual that has contributed to
 
 ### Input Files:
 1. itcont.txt - Information of every donation above $200 made to a political organization 
-2. percentile.txt - A percentile value
+2. percentile.txt - A percentile value set for output
 
 ### Output File:
-1. repeat_donors.txt - Receipient profiles with their Committee ID, Zip Code, 
+1. repeat_donors.txt - Receipient profiles with their Committee ID, Zip Code, Year, Percentile Amount, Total Amount, and Number of                        Contributions. 
 
 ### Source Files:
-1. main.cpp
-2. Data.cpp
-3. Data.h
-4. split.h
+1. main.cpp - Main engine that run all the processes
+2. Data.cpp - Implementing different objects' processes
+3. Data.h - Declaring different objects to be used in the program
+4. split.h - A function to separate strings in the input file.
 
 ### Run File:
-1. run.sh
+1. run.sh - shell commands to compile and run the program in C++ format. It uses a g++ compiler from the linux library.
