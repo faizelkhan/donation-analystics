@@ -56,7 +56,7 @@ public:
 	//lookRcpt: check if the profile of repeated recipient already exists
 	bool lookRcpt(string cmtid_par, string zip_par);
 
-	// addADonor: adds a new donor to <allDonList.
+	// addADonor: adds a new donor to <allDonList>
 	void addADonor(indiv ind_par);
 	
 	//addRecipient: adds a new recipient to <recList>
