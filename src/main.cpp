@@ -8,9 +8,11 @@
 using namespace std;
 
 int main(){
-	ifstream fin;
-	ifstream fperc;
-	ofstream fout;
+	
+	ifstream fin; //file input stream to read in donation information 
+	ifstream fperc; //file input stream to read in percentile
+	ofstream fout; //file output stream to write out the analysis 
+	
 	fin.open("./input/itcont.txt");
 	if (fin.fail()) {
 		cout << "File couldn't be opened!! Pease check the destination.";
@@ -22,13 +24,14 @@ int main(){
 		cout<<"File couldn't be opened!! Pease check the destination.";
 		exit(1);
 	}
-
+	
 	fout.open("./output/repeat_donors.txt");
 	if (fout.fail()) {
 		cout << "File couldn't be opened!! Pease check the destination.";
 		exit(1);
 	}
-	string indv_info;
+	
+	string indv_info; 
 	indiv temp_indv;
 	rcpt temp_rcpt;
 	Data data1 = Data();
@@ -37,7 +40,8 @@ int main(){
 	int count , count_num = 0;
 	bool checkSpace = false;
 	vector<string> listOfStr;
-
+	
+	//read in lines until the pointer reaches the end
 	while (!fin.eof()) {
 		count = 0;
 		checkSpace = false;
@@ -125,7 +129,7 @@ int main(){
 			//look for donor
 			if (data1.isRepDonor(temp_indv.name, temp_indv.zip, temp_indv.yr) && !checkSpace) {
 				
-				//look for recpt
+				//look for recipient
 				if(!data1.lookRcpt(temp_indv.cmte_id, temp_indv.zip)){
 					
 					temp_rcpt.cmte_id = temp_indv.cmte_id;
@@ -142,6 +146,7 @@ int main(){
 					fout <<temp_rcpt.num_contr<<endl;
 					data1.addRecepient(temp_rcpt);
 				}
+				//add recipient 
 				else {
 					
 					data1.addRecAmt(temp_indv.cmte_id, temp_indv.zip,temp_indv.amt);
@@ -171,10 +176,3 @@ int main(){
 	fout.close();
 	
 }
-
-//read file
-//save all into "All DOnor List"
-//  |(At the same time)
-//	|----> Find Repeat donor
-//				|----> Add to Repeat Donor List(COMPAREwith PRevious YEars)
-//				|----> Print amt with contributor
