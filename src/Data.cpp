@@ -65,7 +65,7 @@ bool Data::lookRcpt(string cmtid_par, string zip_par ) {
 }
 
 
-// addADonor: adds a new donor to <allDonList
+// addADonor: adds a new donor to <allDonList>
 void Data::addADonor(indiv ind_par) {
 	
 	allDonList.push_back(ind_par);
