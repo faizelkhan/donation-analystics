@@ -11,19 +11,19 @@ int main(){
 	ifstream fin;
 	ifstream fperc;
 	ofstream fout;
-	fin.open("itcont.txt");
+	fin.open("./input/itcont.txt");
 	if (fin.fail()) {
 		cout << "File couldn't be opened!! Pease check the destination.";
 		exit(1);
 	}
 
-	fperc.open("percentile.txt");
+	fperc.open("./input/percentile.txt");
 	if(fperc.fail()){
 		cout<<"File couldn't be opened!! Pease check the destination.";
 		exit(1);
 	}
 
-	fout.open("repeat_donors.txt");
+	fout.open("./output/repeat_donors.txt");
 	if (fout.fail()) {
 		cout << "File couldn't be opened!! Pease check the destination.";
 		exit(1);
@@ -60,6 +60,7 @@ int main(){
 					}else{
 						checkSpace = true;
 					}
+					cout<<". ";
 					break;
 				case 8:
 					//individual name
@@ -69,6 +70,7 @@ int main(){
 						
 						checkSpace = true;
 					}
+					cout<<". ";
 					break;
 				case 11:
 					//zip code of donor's place
@@ -78,6 +80,7 @@ int main(){
 						
 						checkSpace = true;
 					}
+					cout<<". ";
 					break;
 				case 14:
 					//transaction date
@@ -88,6 +91,7 @@ int main(){
 						
 						checkSpace = true;
 					}
+					cout<<". ";
 					break;
 				case 15:
 					//donation amount
@@ -100,6 +104,7 @@ int main(){
 						
 						checkSpace = true;
 					}
+					cout<<". ";
 					break;
 				case 16:
 					//receiver type
@@ -111,18 +116,18 @@ int main(){
 						
 						temp_indv.other_id = "NULL";
 					}
-
+					cout<<". ";
 					break;
 				}
 				
 			}
-			cout<<count<<endl;
+			
 			//look for donor
 			if (data1.isRepDonor(temp_indv.name, temp_indv.zip, temp_indv.yr) && !checkSpace) {
-				cout << "repeat donor\n";
+				
 				//look for recpt
-				if(!data1.lookRcpt(temp_indv.cmte_id)){
-					cout << "create a new profile of receiver\n";
+				if(!data1.lookRcpt(temp_indv.cmte_id, temp_indv.zip)){
+					
 					temp_rcpt.cmte_id = temp_indv.cmte_id;
 					fout<<temp_rcpt.cmte_id<<"|";
 					temp_rcpt.zip = temp_indv.zip;
@@ -138,9 +143,9 @@ int main(){
 					data1.addRecepient(temp_rcpt);
 				}
 				else {
-					cout << "add amount receiver\n";
-					data1.addRecAmt(temp_indv.cmte_id, temp_indv.amt);
-					vector<rcpt>::iterator rcpt_itr = data1.getRecItr(temp_indv.cmte_id);					
+					
+					data1.addRecAmt(temp_indv.cmte_id, temp_indv.zip,temp_indv.amt);
+					vector<rcpt>::iterator rcpt_itr = data1.getRecItr(temp_indv.cmte_id, temp_indv.zip);					
 					fout << (*rcpt_itr).cmte_id << "|";
 					fout << (*rcpt_itr).zip << "|";
 					fout << (*rcpt_itr).yr << "|";
@@ -152,19 +157,19 @@ int main(){
 			}
 			
 			else if(!checkSpace) {
-				cout << "first time donor\n";
+				
 				data1.addADonor(temp_indv);
 				
 			}
 			
 		}
 		count_num++;
-		cout << "\n-----------------///"<<count_num<<"///-----------------\n";
+		system("CLS");
 	}
 
 	fin.close();
 	fout.close();
-		system("pause");
+	
 }
 
 //read file
