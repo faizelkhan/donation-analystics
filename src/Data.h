@@ -42,16 +42,16 @@ public:
 //	vector<indiv> getRepDonList();
 	vector<rcpt> getRecList();
 	double getRecPercAmt(string cmtid_par, double perc);
-	vector<rcpt>::iterator getRecItr(string cmteid_par);
+	vector<rcpt>::iterator getRecItr(string cmteid_par, string zip_par);
 
 	bool isRepDonor(string name_par, string zip_par, int yr_par);// name_par - name parameter; zip_par - zip code parameter
 //	bool lookRepDonor(string name_par, string zip_par);
-	bool lookRcpt(string cmtid_par);
+	bool lookRcpt(string cmtid_par, string zip_par);
 
 	// set/add
 	void addADonor(indiv ind_par);
 //	void addRepDonor(indiv rep_donor);
 	void addRecepient(rcpt rcpt_par);
-	void addRecAmt(string cmteid_par, double amt);
+	void addRecAmt(string cmteid_par, string zip_par, double amt);
 
 };
